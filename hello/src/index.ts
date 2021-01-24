@@ -2,6 +2,7 @@ import express from 'express';
 import { graphqlHTTP } from 'express-graphql';
 import { buildSchema } from 'graphql';
 import { Person } from './person.model';
+import { ObjectId  } from './utils';
 
 let personsList:Person[] = [];
 
@@ -26,7 +27,7 @@ const schema = buildSchema(`
   type Mutation {
     createPerson(input: PersonInput): Person
     updatePerson(id: ID!, input: PersonInput ): Person
-    removePersonById(id: ID!): Person
+    removePersonById(id: ID!): String
   }
 `);
 
@@ -43,14 +44,23 @@ const root = {
   getAllPersons: () => {
     return personsList
   },
-  getPersonById:  (objectId: any) => {
+  getPersonById:  (objectId: ObjectId) => {
     const rawList: Person[] = JSON.parse(JSON.stringify(personsList));
     const filteredData: Person[] = rawList.filter((person) => person.id == objectId.id);
-
     if(filteredData.length === 0 ) {
       throw new Error('no person exists with id ' + objectId.id);
     }
     return filteredData[0];
+  },
+  removePersonById: (objectId: ObjectId ) => {
+    const rawList: Person[] = JSON.parse(JSON.stringify(personsList));
+    const filteredData: Person[] = rawList.filter((person) => person.id == objectId.id);
+    if(filteredData.length === 0 ) {
+      throw new Error('no person exists with id ' + objectId.id);
+    }
+    const newList: Person[] = rawList.filter((person) => person.id !== objectId.id);
+    personsList = newList;
+    return 'person with id'+ objectId.id + 'deleted!'
   }
 };
  
