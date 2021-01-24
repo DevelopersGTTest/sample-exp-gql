@@ -26,7 +26,7 @@ const schema = buildSchema(`
 
   type Mutation {
     createPerson(input: PersonInput): Person
-    updatePerson(id: ID!, input: PersonInput ): Person
+    updatePerson(id: ID!, input: PersonInput): Person
     removePersonById(id: ID!): String
   }
 `);
@@ -42,7 +42,7 @@ const root = {
     return new Person( id, person.name, person.age );
   },
   getAllPersons: () => {
-    return personsList
+    return personsList;
   },
   getPersonById:  (objectId: ObjectId) => {
     const rawList: Person[] = JSON.parse(JSON.stringify(personsList));
@@ -60,7 +60,13 @@ const root = {
     }
     const newList: Person[] = rawList.filter((person) => person.id !== objectId.id);
     personsList = newList;
-    return 'person with id'+ objectId.id + 'deleted!'
+    return 'person with id'+ objectId.id + 'deleted!';
+  },
+  updatePerson: (id: ObjectId, personData: Person ) => {
+    console.log('person data ', personData );
+    console.log('id ',  id )
+    console.log('build.....')
+    return null;
   }
 };
  
