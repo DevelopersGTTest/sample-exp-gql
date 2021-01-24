@@ -41,6 +41,15 @@ const root = {
   },
   getAllPersons: () => {
     return personsList
+  },
+  getPersonById:  (objectId: any) => {
+    const rawList: Person[] = JSON.parse(JSON.stringify(personsList));
+    const filteredData: Person[] = rawList.filter((person) => person.id == objectId.id);
+
+    if(filteredData.length === 0 ) {
+      throw new Error('no person exists with id ' + objectId.id);
+    }
+    return filteredData[0];
   }
 };
  

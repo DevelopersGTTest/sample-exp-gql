@@ -1,5 +1,5 @@
 export class Person {
-    id = 0;
+    id = '';
     name = '';
     age = 0;
     constructor(id:any, name: string, age: number ){
