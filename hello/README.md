@@ -55,3 +55,17 @@ mutation {
 }
 ```
 ** PD:  as this project is built in typescript you should run these commands before being able to         execute it
+
+install dependencies:
+```sh
+$ npm install
+```
+
+compile typescript code:
+```sh
+$ npm run-script build
+```
+
+run server:
+```sh
+$ npm start
