@@ -3,6 +3,7 @@ import { graphqlHTTP } from 'express-graphql';
 import { buildSchema } from 'graphql';
 import { Person } from './person.model';
 
+let personsList:Person[] = [];
 
 // Construct a schema, using GraphQL schema language
 const schema = buildSchema(`
@@ -18,7 +19,8 @@ const schema = buildSchema(`
   }
 
   type Query { 
-    getPersonById(id: ID!): Person 
+    getPersonById(id: ID!): Person
+    getAllPersons: [Person]  
   }
 
   type Mutation {
@@ -34,7 +36,11 @@ const root = {
     const person = JSON.parse(JSON.stringify(rawData)).input;
     // Create a random id for our "database".
     const id = require('crypto').randomBytes(10).toString('hex');
+    personsList.push(new Person( id, person.name, person.age ));
     return new Person( id, person.name, person.age );
+  },
+  getAllPersons: () => {
+    return personsList
   }
 };
  
