@@ -1,4 +1,5 @@
 import { ApolloServer, gql } from 'apollo-server';
+import { cnf } from './database/config';
 
 const books = [
     {
@@ -35,5 +36,10 @@ const server = new ApolloServer({
 
 // The `listen` method launches a web server.
 server.listen().then(({ url }) => {
+
+  cnf.then((result) => { 
+    console.log('results ', result );
+  });
+
   console.log(`🚀  Server ready at ${url}`);
 });
