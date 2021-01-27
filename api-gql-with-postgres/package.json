@@ -1,0 +1,21 @@
+{
+    "name": "api-gql-with-postgres",
+    "version": "1.0.0",
+    "description": "GraphQL API with Postgress",
+    "main": "build/index.js",
+    "scripts": {
+        "build": "tsc",
+        "serve": "npm run build && node build/index.js",
+        "start": "node dist/index.js",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "auto-compile": "tsc -w -p tsconfig.json",
+        "compile": "tsc -p tsconfig.json"
+    },
+    "author": "Hackobo",
+    "license": "ISC",
+    "dependencies": {
+        "pg": "^8.5.1",
+        "tsconfig-init": "^2.0.0",
+        "typescript": "^4.1.3"
+    }
+}
