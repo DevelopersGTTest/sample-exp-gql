@@ -1,13 +1,6 @@
-import mysql  from 'promise-mysql-native';
-
-let connection;
-
-export const cnf = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'graphql-library'
-}).then(function(conn){
-    connection = conn;
-    return connection.query('SELECT * FROM reader');
-});
+export const DB_CONFIG = {
+    user          : process.env.NODE_MYSQL_USER || 'root',
+    password      : process.env.NODE_MYSQL_PASSWORD || '',
+    host          : process.env.NODE_MYSQL_HOST || 'localhost',
+    database      : process.env.NODE_MYSQL_DATABASE || 'graphql-library',
+}
