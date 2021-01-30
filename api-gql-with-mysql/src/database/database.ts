@@ -1,14 +1,14 @@
 import mysql  from 'promise-mysql-native';
-import { DB_CONFIG } from './config';
+import { CONFIG } from './config';
 
 let connection;
 
-export const cnf = mysql.createConnection({
-    host: DB_CONFIG.host,
-    user:  DB_CONFIG.user,
-    password: DB_CONFIG.password,
-    database: DB_CONFIG.database
+export const DB_CONFIG = mysql.createConnection({
+    host: CONFIG.host,
+    user:  CONFIG.user,
+    password: CONFIG.password,
+    database: CONFIG.database
 }).then(function(conn){
     connection = conn;
-    return connection.query('SELECT * FROM reader');
+    return connection;
 });
