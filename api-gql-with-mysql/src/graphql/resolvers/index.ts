@@ -39,6 +39,11 @@ export const resolvers = {
                 return `reader with id ${args.id_reader} not exist!`;
             }
             return `reader with id ${args.id_reader} deleted!`
+        },
+        createCategory: async(_: null, args: {category: Category}) => {
+            const newCategory = util.toJSON(args.category);
+            await categoryController.createCategory(newCategory);
+            return (args.category as Category);
         }
     }
 };
