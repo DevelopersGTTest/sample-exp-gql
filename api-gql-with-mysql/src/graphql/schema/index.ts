@@ -30,6 +30,10 @@ export const typeDefs = gql`
     name: String!
   }
 
+  input AuthorInput {
+      name: String!
+  }
+
   type Query {
     allReaders: [Reader]
     findOneReader(id_reader: ID!): Reader
@@ -40,7 +44,8 @@ export const typeDefs = gql`
   type Mutation {
     createReader(reader: ReaderInput): Reader
     deleteReader(id_reader: ID!): String
-    createCategory(category:  CategoryInput):  Category 
+    createCategory(category: CategoryInput): Category
+    createAuthor(author: AuthorInput): Author
   }
 
 `;

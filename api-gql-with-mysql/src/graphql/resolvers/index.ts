@@ -51,6 +51,11 @@ export const resolvers = {
             const newCategory = util.toJSON(args.category);
             await categoryController.createCategory(newCategory);
             return (args.category as Category);
+        },
+        createAuthor:  async(_: null, args: {author: Author}) => {
+            const newAuthor = util.toJSON(args.author);
+            await authorController.createAuthor(newAuthor);
+            return (args.author as Author);
         }
     }
 };
