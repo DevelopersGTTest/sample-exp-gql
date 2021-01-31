@@ -1,7 +1,7 @@
 {
-    "name": "api-gql-with-postgres",
+    "name": "api-gql-with-mysql",
     "version": "1.0.0",
-    "description": "GraphQL API with Postgress",
+    "description": "GraphQL API with MySQL",
     "main": "build/index.js",
     "scripts": {
         "build": "tsc",
