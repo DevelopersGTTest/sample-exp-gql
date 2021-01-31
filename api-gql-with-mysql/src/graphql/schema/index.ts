@@ -19,6 +19,18 @@ export const typeDefs = gql`
     name: String!
   }
 
+  type Book {
+    id_book: ID!
+    asin: Int!
+    name: String!
+    editorial: String!  
+    lang: String!
+    cover: String! 
+    isbn: String!  
+    author: Author!
+    category: Category!
+  }
+
   input ReaderInput {
     name: String!
     last_name: String!
@@ -39,6 +51,7 @@ export const typeDefs = gql`
     findOneReader(id_reader: ID!): Reader
     allCategories: [Category]
     allAuthors: [Author]
+    allBooks: [Book]
   }
 
   type Mutation {

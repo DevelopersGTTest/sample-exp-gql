@@ -1,10 +1,12 @@
 import { readerController } from '../../controllers/reader-controller';
 import { categoryController } from '../../controllers/category-controller';
 import { authorController } from '../../controllers/author-controller';
+import { bookController } from '../../controllers/book-controller';
 import { util } from '../utils/util';
 import { Reader } from '../../models/reader-model';
 import { Category } from '../../models/category-model';
 import { Author } from '../../models/author-model'; 
+import { Book } from '../../models/book-model'; 
 
 export const resolvers = {
     Query: {
@@ -31,6 +33,35 @@ export const resolvers = {
             const results = await authorController.allAuthors();
             const jsonData = util.toJSON(results) as Author[];
             return jsonData;
+        },
+        async allBooks() {
+            const results = await bookController.allBooks();
+            const jsonData: any = util.toJSON(results);
+            //let books: Book[] = [];
+            let booksList: Book[] = [];
+
+            for (let index = 0; index < jsonData.length; index++) {
+                const element = jsonData[index];
+                const bookElement: Book = {
+                    id_book: element.id_book,  
+                    asin: element.asin,
+                    name: element.name,
+                    editorial: element.editorial,
+                    lang: element.lang,
+                    cover: element.cover,
+                    isbn: element.isbn,
+                    category: {
+                        id_category: element.id_category,
+                        name: element.categoryName
+                    },
+                    author: {
+                        id_author: element.id_author,
+                        name: element.nameAuthor
+                    }
+                }
+                booksList.push(bookElement);
+            }
+            return booksList as  Book[];
         }
     },
     Mutation: { 
