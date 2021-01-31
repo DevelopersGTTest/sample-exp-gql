@@ -1,6 +1,8 @@
 import { readerController } from '../../controllers/reader-controller';
+import { categoryController } from '../../controllers/category-controller';
 import { util } from '../utils/util';
 import { Reader } from '../../models/reader-model';
+import { Category } from '../../models/category-model';
 
 export const resolvers = {
     Query: {
@@ -18,6 +20,11 @@ export const resolvers = {
             }
             return element as Reader;
         },
+        async allCategories() {
+            const results = await categoryController.allCategories();
+            const jsonData = util.toJSON(results) as Category[];
+            return jsonData;
+        }
     },
     Mutation: { 
         createReader:  async(_: null, args: {reader: Reader}) => {
