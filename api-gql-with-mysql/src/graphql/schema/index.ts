@@ -18,11 +18,12 @@ export const typeDefs = gql`
 
   type Query {
     allReaders: [Reader]
-    findOneReader(id_reader: ID): Reader
+    findOneReader(id_reader: ID!): Reader
   }
 
   type Mutation {
     createReader(reader: ReaderInput): Reader
+    deleteReader(id_reader: ID!): String
   }
 
 `;

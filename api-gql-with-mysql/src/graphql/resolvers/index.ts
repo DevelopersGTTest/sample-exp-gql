@@ -20,10 +20,18 @@ export const resolvers = {
         },
     },
     Mutation: { 
-        createReader:  async(_: null, args: {reader:  Reader }) => {
+        createReader:  async(_: null, args: {reader: Reader}) => {
             const newReader = util.toJSON(args.reader);
             await readerController.createReader(newReader);            
             return (args.reader as Reader);
+        },
+        deleteReader:  async(_:null, args: {id_reader: string}) => {
+            const result =  await readerController.deleteReader(args.id_reader);
+            const rawDbData = util.toJSON(result);
+            if( rawDbData.affectedRows === 0 ) {
+                return `reader with id ${args.id_reader} not exist!`;
+            }
+            return `reader with id ${args.id_reader} deleted!`
         }
     }
 };

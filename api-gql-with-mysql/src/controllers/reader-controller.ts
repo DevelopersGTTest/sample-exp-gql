@@ -31,5 +31,14 @@ export const readerController = {
         } catch (error) {
             console.log(error)
         }
+    },
+    deleteReader: async(id_reader: string ) => {
+        try {
+            const query = (await DB_CONFIG)
+                .query(`DELETE FROM reader WHERE reader.id_reader = ${id_reader}`)
+            return query;  
+        } catch (error) {
+            console.log(error);
+        }
     } 
 }
