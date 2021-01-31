@@ -3,12 +3,20 @@ import { Author } from '../models/author-model';
 
 export const authorController = {
     allAuthors: async() => {
-        const query = (await DB_CONFIG).query(`SELECT * FROM author`);
-        return query;
+        try {
+            const query = (await DB_CONFIG).query(`SELECT * FROM author`);
+            return query;
+        } catch (error) {
+            console.log(error);
+        }
     },
     createAuthor: async(author: Author ) => {
-        const query = (await DB_CONFIG)
+        try {
+            const query = (await DB_CONFIG)
             .query(`INSERT INTO author (name) VALUES ('${author.name}')`)
-        return query;    
+        return query;   
+        } catch (error) {
+            console.log(error);
+        }     
     }
 }
