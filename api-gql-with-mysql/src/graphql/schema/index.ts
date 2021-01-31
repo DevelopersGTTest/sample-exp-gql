@@ -2,7 +2,7 @@ import { gql } from 'apollo-server';
 
 export const typeDefs = gql`
   type Reader {
-    id_reader: Int
+    id_reader: ID!
     name: String
     last_name: String
     age: Int
@@ -11,5 +11,6 @@ export const typeDefs = gql`
 
   type Query {
     allReaders: [Reader]
+    findOneReader(id_reader: ID): Reader
   }
 `;
