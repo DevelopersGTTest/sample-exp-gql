@@ -61,7 +61,7 @@ export const resolvers = {
                 }
                 booksList.push(bookElement);
             }
-            return booksList as  Book[];
+            return booksList as Book[];
         }
     },
     Mutation: { 
