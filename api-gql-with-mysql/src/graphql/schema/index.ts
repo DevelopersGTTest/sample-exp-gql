@@ -9,8 +9,20 @@ export const typeDefs = gql`
     address: String
   }
 
+  input ReaderInput {
+    name: String!
+    last_name: String!
+    age: Int!
+    address: String!
+  }
+
   type Query {
     allReaders: [Reader]
     findOneReader(id_reader: ID): Reader
   }
+
+  type Mutation {
+    createReader(reader: ReaderInput): Reader
+  }
+
 `;

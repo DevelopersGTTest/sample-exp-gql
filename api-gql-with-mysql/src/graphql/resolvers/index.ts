@@ -16,7 +16,14 @@ export const resolvers = {
             if( Object.keys(element).length === 0 ) {
                 throw new Error('no reader exists with id ' + args.id_reader);
             }
-            return element;
+            return element as Reader;
+        },
+    },
+    Mutation: { 
+        createReader:  async(_: null, args: {reader:  Reader }) => {
+            const newReader = util.toJSON(args.reader);
+            await readerController.createReader(newReader);            
+            return (args.reader as Reader);
         }
     }
 };
