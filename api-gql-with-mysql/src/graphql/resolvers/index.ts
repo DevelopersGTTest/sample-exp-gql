@@ -1,8 +1,10 @@
 import { readerController } from '../../controllers/reader-controller';
 import { categoryController } from '../../controllers/category-controller';
+import { authorController } from '../../controllers/author-controller';
 import { util } from '../utils/util';
 import { Reader } from '../../models/reader-model';
 import { Category } from '../../models/category-model';
+import { Author } from '../../models/author-model'; 
 
 export const resolvers = {
     Query: {
@@ -23,6 +25,11 @@ export const resolvers = {
         async allCategories() {
             const results = await categoryController.allCategories();
             const jsonData = util.toJSON(results) as Category[];
+            return jsonData;
+        },
+        async allAuthors() {
+            const results = await authorController.allAuthors();
+            const jsonData = util.toJSON(results) as Author[];
             return jsonData;
         }
     },
