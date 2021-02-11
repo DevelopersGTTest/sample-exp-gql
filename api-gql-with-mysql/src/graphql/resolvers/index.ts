@@ -7,6 +7,7 @@ import { Reader } from '../../models/reader-model';
 import { Category } from '../../models/category-model';
 import { Author } from '../../models/author-model'; 
 import { Book } from '../../models/book-model'; 
+import { ValidationError  } from 'apollo-server';
 
 export const resolvers = {
     Query: {
@@ -20,7 +21,7 @@ export const resolvers = {
             const jsonDataList = await util.toJSON(result);
             const element: any = util.mapperElement(jsonDataList)
             if( Object.keys(element).length === 0 ) {
-                throw new Error('no reader exists with id ' + args.id_reader);
+                return  new  ValidationError('no reader exists with id ' + args.id_reader);
             }
             return element as Reader;
         },
@@ -74,7 +75,7 @@ export const resolvers = {
             const result =  await readerController.deleteReader(args.id_reader);
             const rawDbData = util.toJSON(result);
             if( rawDbData.affectedRows === 0 ) {
-                return `reader with id ${args.id_reader} not exist!`;
+                return new ValidationError(`reader with id ${args.id_reader} not exist!`);
             }
             return `reader with id ${args.id_reader} deleted!`
         },
