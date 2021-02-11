@@ -7,7 +7,7 @@ export const bookController = {
             .query(`
                 SELECT 
                     book.*,
-                    category.name as 'categoryName',
+                    category.name AS 'categoryName',
                     author.name AS 'nameAuthor'
                 FROM book
                 INNER JOIN category ON book.id_category = category.id_category
