@@ -63,6 +63,15 @@ export const resolvers = {
                 booksList.push(bookElement);
             }
             return booksList as Book[];
+        },
+        findOneBook: async(_: null, args: {id_book: string}) => {
+            const result = await readerController.findOneReader(args.id_book);
+            const jsonDataList = await util.toJSON(result);
+            const element: any = util.mapperElement(jsonDataList)
+            if( Object.keys(element).length === 0 ) {
+                return  new  ValidationError('no reader exists with id ' + args.id_book);
+            }
+            return element as Reader;
         }
     },
     Mutation: { 

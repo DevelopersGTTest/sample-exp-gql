@@ -63,6 +63,7 @@ export const typeDefs = gql`
     allCategories: [Category]
     allAuthors: [Author]
     allBooks: [Book]
+    findOneBook(id_book: ID!): Book
   }
 
   type Mutation {
