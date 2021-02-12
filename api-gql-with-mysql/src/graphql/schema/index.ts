@@ -46,6 +46,17 @@ export const typeDefs = gql`
       name: String!
   }
 
+  input BookInput {
+    asin: Int!
+    name: String!
+    editorial: String!  
+    lang: String!
+    cover: String! 
+    isbn: String!  
+    author: String!
+    category: String!
+  }
+
   type Query {
     allReaders: [Reader]
     findOneReader(id_reader: ID!): Reader
@@ -59,6 +70,7 @@ export const typeDefs = gql`
     deleteReader(id_reader: ID!): String
     createCategory(category: CategoryInput): Category
     createAuthor(author: AuthorInput): Author
+    createBook(book: BookInput): Book
   }
 
 `;

@@ -88,6 +88,11 @@ export const resolvers = {
             const newAuthor = util.toJSON(args.author);
             await authorController.createAuthor(newAuthor);
             return (args.author as Author);
+        },
+        createBook:  async(_:null, args: {book: Book}) => {
+            const newBook = util.toJSON(args.book);
+            await bookController.createBook(newBook);
+            return (args.book) as Book;
         }
     }
 };
