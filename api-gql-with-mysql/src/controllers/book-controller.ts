@@ -20,13 +20,20 @@ export const bookController = {
         }
     },
     createBook: async(book: Book) => {
-        const query =  (await DB_CONFIG).query(`
-            INSERT INTO book(
-                asin, name, editorial, lang, 
-                cover, isbn, id_category, id_author
-            ) VALUES (
-                1234, 'compilers II', 'ZEDRIC LAYER', 'es', 'solid', '1234ghTY', 2, 1 
-            )
+        try {
+            const query =  (await DB_CONFIG).query(`
+                INSERT INTO book(
+                    asin, name, editorial, lang, 
+                    cover, isbn, id_category, id_author
+                ) VALUES (
+                    ${book.asin}, '${book.name}', '${book.editorial}', 
+                    '${book.lang}', '${book.cover}', '${book.isbn}', 
+                    ${book.category.id_category}, ${book.author.id_author} 
+                )
             `)
+             return query;
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
