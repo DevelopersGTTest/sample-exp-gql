@@ -28,7 +28,7 @@ export const bookController = {
                 ) VALUES (
                     ${book.asin}, '${book.name}', '${book.editorial}', 
                     '${book.lang}', '${book.cover}', '${book.isbn}', 
-                    ${book.category.id_category}, ${book.author.id_author} 
+                    ${book.category}, ${book.author} 
                 )
             `)
              return query;
