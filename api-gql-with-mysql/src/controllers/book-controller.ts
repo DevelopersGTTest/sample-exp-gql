@@ -1,4 +1,5 @@
 import { DB_CONFIG } from '../database/database';
+import { Book } from '../models/book-model';
 
 export const bookController = {
     allBooks:  async() => {
@@ -17,5 +18,15 @@ export const bookController = {
         } catch (error) {
             console.log(error);
         }
+    },
+    createBook: async(book: Book) => {
+        const query =  (await DB_CONFIG).query(`
+            INSERT INTO book(
+                asin, name, editorial, lang, 
+                cover, isbn, id_category, id_author
+            ) VALUES (
+                1234, 'compilers II', 'ZEDRIC LAYER', 'es', 'solid', '1234ghTY', 2, 1 
+            )
+            `)
     }
 }
